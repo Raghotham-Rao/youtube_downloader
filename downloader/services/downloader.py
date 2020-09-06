@@ -16,7 +16,7 @@ class Downloader:
         return self.yt.thumbnail_url
     
     def get_available_video_streams(self):
-        return self.yt.streams.all()
+        return self.yt.streams.filter(only_video=True)
 
     def get_available_audio_streams(self):
         return self.yt.streams.filter(only_audio=True)

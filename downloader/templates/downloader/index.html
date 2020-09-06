@@ -1,0 +1,23 @@
+{% extends 'base_template.html' %}
+{% load static %}
+
+{% block content %}
+    <h1 class="display-1">In Downloader! </h1>
+    <form class="" action="" method="post" name="video_link_form">
+        
+        {% csrf_token %}
+
+        <input type="text" name="link" id="link" value="{{data.link}}">
+
+        <input type="submit" value="Check" id="submit_btn">
+    </form>
+
+    <p>
+        <ul>
+            {% for i in data.available_links %}
+                <li>{{i}}</li>
+            {% endfor %}
+        </ul>
+    </p>
+    
+{% endblock %}
