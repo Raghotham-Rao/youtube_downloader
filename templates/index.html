@@ -1,5 +1,8 @@
 {% extends 'base_template.html' %}
 
 {% block content %}
-    <h1 class="display-1">Hey There Downloader! </h1>
+    <h1 class="display-1" onload="set_active_link(0)">Hey There Downloader! </h1>
+    <script>
+        setActiveLink(0);
+    </script>
 {% endblock %}

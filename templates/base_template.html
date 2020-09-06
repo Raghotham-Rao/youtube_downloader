@@ -10,10 +10,52 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="{% static 'scripts/script.js' %}"></script>
     <!-- <link rel="stylesheet" href="{% static 'css/style.css' %}"> -->
 </head>
 <body>
-    {% block content %}
-    {% endblock %}
+    <div class="container">
+
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+
+            <a class="navbar-brand text-danger" href="/">Easy_YouTube_Downloader</a>
+
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#mainNavBar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="mainNavBar">
+
+                <ul class="navbar-nav ml-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Walkthrough</a>
+                    </li>
+    
+                    <li class="nav-item">
+                        <a class="nav-link" href="/downloader/video">Videos</a>
+                    </li>
+    
+                    <li class="nav-item">
+                        <a class="nav-link" href="/downloader/music">Music</a>
+                    </li>
+    
+                    <li class="nav-item">
+                        <a class="nav-link" href="/downloader/playlist">Playlist</a>
+                    </li>
+    
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Other Projects</a>
+                    </li>
+    
+                </ul>
+
+            </div>
+
+        </nav>
+
+        {% block content %}
+        {% endblock %}
+    </div>
 </body>
 </html>

@@ -1,4 +1,5 @@
 from pytube import YouTube, Playlist
+import re
 
 
 class Downloader:
@@ -30,7 +31,8 @@ class Downloader:
         self.playlist = Playlist(link)
         
     def get_playlist_videos(self):
-        return self.playlist.video_urls()
+        # print(self.playlist.videos)
+        return [i for i in self.playlist.videos]
 
     def download_playlist(self):
         self.playlist.download_all()
