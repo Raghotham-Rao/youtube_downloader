@@ -28,16 +28,20 @@
 
         <div class="stream_links w-75 m-auto pb-3">
 
-            <div class="input-group">
-                <select class="form-control">
-                    {% for i in data.available_links %}
-                        <option>{{i}}</option>
-                    {% endfor %}
-                </select>
-                <div class="input-group-append">
-                    <button class="btn bg-success btn-dark">Download</button>
+            <form action="/downloader/download_video" method="post">
+                <div class="input-group">
+                    {% csrf_token %}
+                    <input type="hidden" value="{{data.link}}" name="link">
+                    <select class="form-control" name="stream_link">
+                        {% for i in data.available_links %}
+                            <option>Quality:&nbsp;{{i.1}} Type:&nbsp;{{i.0}}</option>
+                        {% endfor %}
+                    </select>
+                    <div class="input-group-append">
+                        <button type="submit" class="btn bg-success btn-dark">Download</button>
+                    </div>
                 </div>
-            </div>
+            </form>
 
         </div>
 

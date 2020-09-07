@@ -22,3 +22,6 @@ urlpatterns = [
     path('', views.index),
     path('downloader/', include('downloader.urls'))
 ]
+
+handler404 = views.handler404
+handler500 = views.handler500
