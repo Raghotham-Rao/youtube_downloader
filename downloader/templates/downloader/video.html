@@ -28,7 +28,7 @@
 
         <div class="stream_links w-75 m-auto pb-3">
 
-            <form action="/downloader/download_video" method="post">
+            <form action="download_video" method="post">
                 <div class="input-group">
                     {% csrf_token %}
                     <input type="hidden" value="{{data.link}}" name="link">

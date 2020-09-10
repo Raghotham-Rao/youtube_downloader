@@ -5,6 +5,7 @@ import json
 import os
 from django.conf import settings
 from django.http import HttpResponse, Http404
+from django.utils.encoding import smart_str
 
 
 # Create your views here.
@@ -54,20 +55,15 @@ def download_video(request):
     if request.method == 'GET':
         return render(request, '500.html', status=500)
     req_body = dict(request.POST)
-    print(req_body)
+    print("\n\nvideo downloaded \n\n")
     downloader = Downloader()
     downloader.set_single_video_link(str(req_body['link']))
     downloader.download_single_video(0)
 
-    # file_path = os.path.join(settings.MEDIA_ROOT, path)
-    # if os.path.exists(file_path):
-    #     with open(file_path, 'rb') as fh:
-    #         response = HttpResponse(fh.read(), content_type="application/vnd.ms-excel")
-    #         response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
-    #         return responsefile_path = os.path.join(settings.MEDIA_ROOT, path)
-    # if os.path.exists(file_path):
-    #     with open(file_path, 'rb') as fh:
-    #         response = HttpResponse(fh.read(), content_type="application/vnd.ms-excel")
-    #         response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
-    #         return response
-    return HttpResponse('Downloaded at the server')
+    response = HttpResponse(content_type='application/force-download') # mimetype is replaced by content_type for django 1.7
+    response['Content-Disposition'] = 'attachment; filename=%s' % (smart_str(downloader.get_title()) + ".mp4")
+
+    response['X-Sendfile'] = smart_str('/media/' + downloader.get_title() + '.mp4')
+    # It's usually a good idea to set the 'Content-Length' header too.
+    # You can also set any other required headers: Cache-Control, etc.
+    return response
